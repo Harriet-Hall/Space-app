@@ -3,9 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
     <title>Document</title>
 </head>
 <body>
-   <p>This is the template</p> 
+    <header>
+        <h1>asteroid finder</h1>  
+    </header>
+
+    <div class="display">
+        <p>This is where the display will live</p>
+    </div>
+
+    <div class="options">
+        <form>
+            <label for="asteroid">Pick an asteroid</label>
+            <select id="asteroid" name="asteroid">
+                <option value="asteroid1">Asteroid 1</option>
+                <option value="asteroid2">Asteroid 2</option>
+                <option value="asteroid3">Asteroid 3</option>
+            </select>
+            <label for="fname">Asteroid name</label>
+            <input type="text" id="asteroid_name" name="Name your asteroid" placeholder="Your asteroid name..">
+            <label for="cities">Pick a city</label>
+            <select id="cities" name="country">
+                <option value="new-york">New York</option>
+                <option value="london">London</option>
+                <option value="dublin">Dublin</option>
+            </select>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </body>
 </html>
