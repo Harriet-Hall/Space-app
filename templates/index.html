@@ -9,25 +9,26 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 	<style>
-		html, body {
-			height: 100%;
-			margin: 0;
-		}
-		.leaflet-container {
-			height: 400px;
-			width: 600px;
-			max-width: 100%;
-			max-height: 100%;
-		}
-	</style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        #map {
+            width: 100%;
+            height: 400px;
+            min-height: 300px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    </style>
 </head>
 <body>
     <header>
         <h1>asteroid finder</h1>  
     </header>
-
+    <p id="radius" style="display:none">{{radius}}</p>
     <div class="display">
-        <div id="map" style="width: 600px; height: 400px;"></div>
+        <div id="map" style="width: 100%; height: 100%;"></div>
     </div>
 
     <div class="options">
@@ -38,15 +39,6 @@
                 <option value='{{ asteroid["fullname"] }}'>{{ asteroid["fullname"] }}</option>
                 {% endfor %}
             </select>
-            <!-- <label for="fname">Asteroid name</label> -->
-            <!-- <input type="text" id="asteroid_name" name="Name your asteroid" placeholder="Your asteroid name..">
-            <button id="nameButton"></button>
-            <label for="cities">Pick a city</label>
-            <select id="cities" name="cities">
-                <option id="new-york" value="">New York</option>
-                <option id="london" value="">London</option>
-                <option id="dublin" value="">blin</option>
-            </select> -->
 
             <input id="submit" type="submit" value="Submit">
         </form>
@@ -67,11 +59,14 @@
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 	}).addTo(map);
 
+    const asteroid_radius = parseInt(document.getElementById("radius").innerHTML);
+    console.log(asteroid_radius);
 	const circle = L.circle([51.505, -0.09], {
 		color: 'red',
 		fillColor: '#f03',
 		fillOpacity: 0.5,
-		radius: 500
+		radius: asteroid_radius,
+
 	}).addTo(map).bindPopup('I am a circle.');
 
 	function onMapClick(e) {
